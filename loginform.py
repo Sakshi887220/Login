@@ -4,20 +4,15 @@ conn=sqlite3.connect("student.db")
 print("Database created successfully")
 
 conn.execute("""
-CREATE TABLE AD(
-ADMIN_ID INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,
-USERNAME TEXT NOT NULL, 
-PASSWORD TEXT NOT NULL)
-""")
-print ("Table ADMIN created successfully")
+
 
 #Output
 #Database Opened successfully
 #Table ADMIN created successfully
 
-conn.execute("INSERT INTO AD(USERNAME,PASSWORD) VALUES ('admin', 'admin789')");
 
-conn.execute("INSERT INTO AD(USERNAME,PASSWORD) VALUES ('krazy', 'krazy789')");
+
+conn.execute("INSERT INTO AD(USERNAME,PASSWORD) VALUES ('krazy', 'krazy789')")
 
 conn.commit()
 print ("Records inserted successfully")
@@ -30,21 +25,7 @@ Records inserted successfully
 
 def login():
     #getting form data
-    uname=username.get()
-    pwd=password.get()
-    #applying empty validation
-    if uname=='' or pwd=='':
-        message.set("fill the empty field!!!")
-    else:
-      #open database
-      conn = sqlite3.connect('student.db')
-      #select query
-      cursor = conn.execute('SELECT * from AD where USERNAME="%s" and PASSWORD="%s"'%(uname,pwd))
-      #fetch data 
-      if cursor.fetchone():
-       message.set("Login success")
-      else:
-       message.set("Wrong username or password!!!")
+    
 #defining loginform function
 def Loginform():
     global login_screen
@@ -73,7 +54,7 @@ def Loginform():
     #Label for displaying login status[success/failed]
     Label(login_screen, text="",textvariable=message,bg="#1C2833",fg="white",font=("Arial",12,"bold")).place(x=95,y=120)
     #Login button
-    Button(login_screen, text="Login", width=10, height=1, command=login, bg="#0E6655",fg="white",font=("Arial",12,"bold")).place(x=125,y=170)
+    Button(login_screen, text="Login", width=10, height=1, , bg="#0E6655",fg="white",font=("Arial",12,"bold")).place(x=125,y=170)
     login_screen.mainloop()
 #calling function Loginform
 Loginform()
